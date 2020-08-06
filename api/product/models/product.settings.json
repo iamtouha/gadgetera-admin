@@ -49,6 +49,15 @@
       ],
       "plugin": "upload",
       "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
+      "private": false,
+      "required": true
+    },
+    "attribute": {
+      "type": "json"
     }
   }
 }
