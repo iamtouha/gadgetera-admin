@@ -27,10 +27,6 @@
       "default": 0,
       "max": 100
     },
-    "available": {
-      "type": "boolean",
-      "default": true
-    },
     "published": {
       "type": "boolean",
       "default": true
@@ -41,8 +37,8 @@
     "brand": {
       "model": "brand"
     },
-    "photo": {
-      "model": "file",
+    "photos": {
+      "collection": "file",
       "via": "related",
       "allowedTypes": [
         "images"
@@ -56,8 +52,17 @@
       "private": false,
       "required": true
     },
-    "attribute": {
-      "type": "json"
+    "stock": {
+      "type": "integer",
+      "max": 999,
+      "min": 0,
+      "required": true
+    },
+    "variants": {
+      "type": "component",
+      "repeatable": true,
+      "component": "product.variant",
+      "required": false
     }
   }
 }

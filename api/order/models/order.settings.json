@@ -14,45 +14,16 @@
       "required": true,
       "maxLength": 64
     },
-    "address": {
-      "type": "text",
-      "required": true,
-      "maxLength": 255,
-      "private": true
-    },
     "phone": {
       "type": "string",
       "required": true,
       "minLength": 10,
       "maxLength": 14
     },
-    "method": {
-      "type": "enumeration",
-      "enum": [
-        "bkash",
-        "rocket",
-        "nagad"
-      ]
-    },
-    "price": {
+    "total": {
       "type": "decimal",
       "required": true,
       "private": false
-    },
-    "transactionid": {
-      "type": "string",
-      "private": true,
-      "required": true,
-      "unique": true,
-      "minLength": 15,
-      "maxLength": 64
-    },
-    "paymentid": {
-      "type": "string",
-      "required": true
-    },
-    "products": {
-      "collection": "product"
     },
     "user": {
       "plugin": "users-permissions",
@@ -77,6 +48,23 @@
         "declined"
       ],
       "default": "received"
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "required": true,
+      "component": "order.item"
+    },
+    "address": {
+      "type": "component",
+      "repeatable": false,
+      "component": "order.address"
+    },
+    "payment": {
+      "type": "component",
+      "repeatable": false,
+      "component": "order.payment",
+      "required": true
     }
   }
 }

@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_order_items",
+  "info": {
+    "name": "item",
+    "icon": "dolly-flatbed"
+  },
+  "options": {},
+  "attributes": {
+    "units": {
+      "type": "integer",
+      "required": true,
+      "max": 6,
+      "min": 1
+    },
+    "product": {
+      "model": "product"
+    },
+    "attribute": {
+      "type": "json"
+    }
+  }
+}
