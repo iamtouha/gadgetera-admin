@@ -28,6 +28,11 @@
       "type": "decimal",
       "max": 999,
       "min": 0
+    },
+    "postcode": {
+      "type": "integer",
+      "max": 9999,
+      "min": 1000
     }
   }
 }
