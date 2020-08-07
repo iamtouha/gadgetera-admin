@@ -27,10 +27,6 @@
       "default": 0,
       "max": 100
     },
-    "published": {
-      "type": "boolean",
-      "default": true
-    },
     "category": {
       "model": "category"
     },
@@ -52,17 +48,24 @@
       "private": false,
       "required": true
     },
-    "stock": {
-      "type": "integer",
-      "max": 999,
-      "min": 0,
-      "required": true
-    },
     "variants": {
       "type": "component",
       "repeatable": true,
       "component": "product.variant",
       "required": false
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "published",
+        "unpublished",
+        "archived"
+      ],
+      "default": "published"
+    },
+    "available": {
+      "type": "boolean",
+      "default": true
     }
   }
 }

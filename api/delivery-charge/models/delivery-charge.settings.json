@@ -1,0 +1,20 @@
+{
+  "kind": "singleType",
+  "collectionName": "delivery_charges",
+  "info": {
+    "name": "deliveryCharge"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "charge": {
+      "type": "json",
+      "private": false
+    },
+    "area": {
+      "type": "json"
+    }
+  }
+}

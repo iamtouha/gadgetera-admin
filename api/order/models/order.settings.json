@@ -21,9 +21,7 @@
       "maxLength": 14
     },
     "total": {
-      "type": "decimal",
-      "required": true,
-      "private": false
+      "type": "decimal"
     },
     "user": {
       "plugin": "users-permissions",
@@ -40,13 +38,7 @@
     },
     "status": {
       "type": "enumeration",
-      "enum": [
-        "received",
-        "confirmed",
-        "shipped",
-        "delivered",
-        "declined"
-      ],
+      "enum": ["received", "confirmed", "shipped", "delivered", "declined"],
       "default": "received"
     },
     "items": {
@@ -65,6 +57,12 @@
       "repeatable": false,
       "component": "order.payment",
       "required": true
+    },
+    "paid": {
+      "type": "decimal",
+      "min": 0,
+      "default": 0,
+      "private": false
     }
   }
 }
