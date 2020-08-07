@@ -19,7 +19,7 @@
     },
     "price": {
       "type": "decimal",
-      "required": true,
+      "required": false,
       "min": 1
     },
     "discount": {
@@ -40,7 +40,7 @@
         "images"
       ],
       "plugin": "upload",
-      "required": true
+      "required": false
     },
     "slug": {
       "type": "uid",
@@ -57,11 +57,11 @@
     "status": {
       "type": "enumeration",
       "enum": [
+        "draft",
         "published",
-        "unpublished",
         "archived"
       ],
-      "default": "published"
+      "default": "draft"
     },
     "available": {
       "type": "boolean",
