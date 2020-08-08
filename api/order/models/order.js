@@ -1,10 +1,5 @@
 "use strict";
 
-/**
- * Read the documentation (https://strapi.io/documentation/v3.x/concepts/models.html#lifecycle-hooks)
- * to customize this model
- */
-
 module.exports = {
   lifecycles: {
     async beforeCreate(data) {
@@ -23,7 +18,8 @@ module.exports = {
         products.forEach((product, index) => {
           total +=
             data.items[index].units *
-            (product.price - product.price * (product.discount / 100));
+            product.price *
+            (1 - product.discount / 100);
         });
         const cost = area.lowAreas.includes(data.address[area.type])
           ? charge.low
