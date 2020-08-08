@@ -13,6 +13,13 @@
       "type": "string",
       "required": true,
       "unique": true
+    },
+    "logo": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": ["images"],
+      "plugin": "upload",
+      "required": true
     }
   }
 }
