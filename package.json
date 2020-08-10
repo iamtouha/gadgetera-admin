@@ -5,9 +5,11 @@
   "description": "A Strapi application",
   "scripts": {
     "develop": "strapi develop",
+    "dev-admin": "strapi develop --watch-admin",
     "start": "strapi start",
     "build": "cd ./plugins/wysiwyg && npm install && cd ./../../ && strapi build",
-    "strapi": "strapi"
+    "strapi": "strapi",
+    "build-dev": "strapi build"
   },
   "devDependencies": {},
   "dependencies": {
