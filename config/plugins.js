@@ -18,8 +18,8 @@ module.exports = ({ env }) => ({
       },
     },
     settings: {
-      defaultFrom: "hello@example.com",
-      defaultReplyTo: "hello@example.com",
+      defaultFrom: "gadgeterabd@gmail.com",
+      defaultReplyTo: "gadgeterabd@gmail.com",
     },
   },
 });
