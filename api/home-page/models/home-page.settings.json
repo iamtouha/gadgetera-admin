@@ -21,12 +21,6 @@
     "featured": {
       "collection": "product"
     },
-    "section1": {
-      "type": "richtext"
-    },
-    "section2": {
-      "type": "richtext"
-    },
     "features": {
       "type": "component",
       "repeatable": true,
