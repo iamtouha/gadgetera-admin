@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_home_page_features",
+  "info": {
+    "name": "feature",
+    "icon": "align-left"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    },
+    "icon": {
+      "type": "string"
+    }
+  }
+}

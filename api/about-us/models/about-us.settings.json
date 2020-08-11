@@ -1,0 +1,21 @@
+{
+  "kind": "singleType",
+  "collectionName": "aboutuses",
+  "info": {
+    "name": "AboutUs"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "text": {
+      "type": "richtext"
+    },
+    "team": {
+      "type": "component",
+      "repeatable": true,
+      "component": "about-us.member"
+    }
+  }
+}

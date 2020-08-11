@@ -1,0 +1,39 @@
+{
+  "kind": "singleType",
+  "collectionName": "contactuses",
+  "info": {
+    "name": "ContactUs"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "phone1": {
+      "type": "string"
+    },
+    "phone2": {
+      "type": "string"
+    },
+    "phone3": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "availability": {
+      "type": "text"
+    },
+    "content": {
+      "type": "richtext"
+    },
+    "links": {
+      "type": "component",
+      "repeatable": true,
+      "component": "contact-us.link"
+    },
+    "messenger": {
+      "type": "string"
+    }
+  }
+}

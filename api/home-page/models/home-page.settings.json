@@ -1,0 +1,36 @@
+{
+  "kind": "singleType",
+  "collectionName": "home_pages",
+  "info": {
+    "name": "HomePage"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "carousel": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "featured": {
+      "collection": "product"
+    },
+    "section1": {
+      "type": "richtext"
+    },
+    "section2": {
+      "type": "richtext"
+    },
+    "features": {
+      "type": "component",
+      "repeatable": true,
+      "component": "home-page.feature"
+    }
+  }
+}
