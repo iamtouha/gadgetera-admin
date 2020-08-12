@@ -1,6 +1,6 @@
 module.exports = {
   load: {
-    before: ["sentry"],
+    before: ["sentry", "responseTime", "logger", "cors", "responses"],
   },
   settings: {
     sentry: {
