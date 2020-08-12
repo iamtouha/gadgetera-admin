@@ -8,6 +8,6 @@ module.exports = {
     },
   },
   cors: {
-    origin: "*",
+    origin: "http://localhost",
   },
 };
