@@ -66,6 +66,12 @@
     "available": {
       "type": "boolean",
       "default": true
+    },
+    "overview": {
+      "type": "text",
+      "default": "product short description",
+      "minLength": 10,
+      "maxLength": 124
     }
   }
 }
