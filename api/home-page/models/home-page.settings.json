@@ -9,22 +9,13 @@
     "timestamps": true
   },
   "attributes": {
-    "carousel": {
-      "collection": "file",
-      "via": "related",
-      "allowedTypes": [
-        "images"
-      ],
-      "plugin": "upload",
-      "required": false
-    },
     "featured": {
       "collection": "product"
     },
-    "features": {
+    "reviews": {
       "type": "component",
       "repeatable": true,
-      "component": "home-page.feature"
+      "component": "home-page.review"
     }
   }
 }
