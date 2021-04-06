@@ -1,21 +1,22 @@
 {
   "kind": "collectionType",
-  "collectionName": "Categories",
+  "collectionName": "categories",
   "info": {
-    "name": "Category"
+    "name": "category"
   },
   "options": {
     "increments": true,
-    "timestamps": true
+    "timestamps": true,
+    "draftAndPublish": false
   },
   "attributes": {
     "name": {
       "type": "string",
-      "required": true,
-      "unique": true
+      "required": true
     },
-    "icon": {
-      "type": "string"
+    "products": {
+      "collection": "product",
+      "via": "category"
     }
   }
 }

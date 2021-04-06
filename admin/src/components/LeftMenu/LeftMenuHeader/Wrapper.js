@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-import Logo from "../../../assets/images/logo.svg";
+import Logo from "../../../assets/images/logo-strapi.svg";
 
 const Wrapper = styled.div`
-  background-color: #cbad6d;
+  background-color: #18202e;
   padding-left: 5px;
+  margin-top: 10px;
   height: ${(props) => props.theme.main.sizes.leftMenu.height};
 
   .leftMenuHeaderLink {
