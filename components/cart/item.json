@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_cart_items",
+  "info": {
+    "name": "item",
+    "icon": "shopping-cart",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "product": {
+      "model": "product"
+    },
+    "quantity": {
+      "type": "decimal",
+      "required": true,
+      "min": 1,
+      "max": 50
+    },
+    "variant": {
+      "type": "string",
+      "required": true
+    },
+    "subtotal": {
+      "type": "decimal",
+      "min": 0.1
+    }
+  }
+}

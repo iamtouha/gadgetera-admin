@@ -1,0 +1,50 @@
+{
+  "kind": "collectionType",
+  "collectionName": "transactions",
+  "info": {
+    "name": "transaction",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "transaction_id": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "account_no": {
+      "type": "string",
+      "required": true
+    },
+    "amount": {
+      "type": "decimal",
+      "required": true,
+      "min": 1
+    },
+    "method": {
+      "type": "enumeration",
+      "enum": [
+        "bkash",
+        "nagad",
+        "rocket"
+      ],
+      "required": true
+    },
+    "order": {
+      "via": "payment",
+      "model": "order"
+    },
+    "verified": {
+      "type": "boolean",
+      "default": false
+    },
+    "user": {
+      "plugin": "users-permissions",
+      "model": "user"
+    }
+  }
+}

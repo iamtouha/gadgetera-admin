@@ -2,21 +2,23 @@
   "kind": "collectionType",
   "collectionName": "categories",
   "info": {
-    "name": "category"
+    "name": "category",
+    "description": ""
   },
   "options": {
     "increments": true,
     "timestamps": true,
-    "draftAndPublish": false
+    "draftAndPublish": true
   },
   "attributes": {
     "name": {
       "type": "string",
-      "required": true
+      "required": true,
+      "unique": true
     },
-    "products": {
-      "collection": "product",
-      "via": "category"
+    "key": {
+      "type": "uid",
+      "targetField": "name"
     }
   }
 }

@@ -2,30 +2,23 @@
   "kind": "collectionType",
   "collectionName": "brands",
   "info": {
-    "name": "brand"
+    "name": "brand",
+    "description": ""
   },
   "options": {
     "increments": true,
     "timestamps": true,
-    "draftAndPublish": false
+    "draftAndPublish": true
   },
   "attributes": {
     "name": {
       "type": "string",
+      "unique": true,
       "required": true
     },
-    "logo": {
-      "model": "file",
-      "via": "related",
-      "allowedTypes": [
-        "images"
-      ],
-      "plugin": "upload",
-      "required": false
-    },
-    "products": {
-      "collection": "product",
-      "via": "brand"
+    "key": {
+      "type": "uid",
+      "targetField": "name"
     }
   }
 }

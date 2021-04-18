@@ -12,29 +12,21 @@
   },
   "attributes": {
     "name": {
-      "type": "string"
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "minLength": 10
     },
     "description": {
-      "type": "richtext"
-    },
-    "price": {
-      "type": "decimal"
-    },
-    "stock": {
-      "type": "integer",
-      "min": 0,
-      "max": 9999
-    },
-    "slug": {
-      "type": "uid",
-      "targetField": "name",
+      "type": "richtext",
       "required": true
     },
-    "discount": {
-      "type": "decimal",
-      "max": 100,
-      "min": 0,
-      "default": 0
+    "SKU": {
+      "type": "string",
+      "private": false,
+      "required": true,
+      "unique": true,
+      "minLength": 4
     },
     "photos": {
       "collection": "file",
@@ -45,18 +37,20 @@
       "plugin": "upload",
       "required": true
     },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
+    },
+    "brand": {
+      "model": "brand"
+    },
+    "category": {
+      "model": "category"
+    },
     "variants": {
       "type": "component",
       "repeatable": true,
       "component": "product.variant"
-    },
-    "brand": {
-      "via": "products",
-      "model": "brand"
-    },
-    "category": {
-      "via": "products",
-      "model": "category"
     }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "name": "backend",
+  "name": "gadget-era",
   "private": true,
   "version": "0.1.0",
   "description": "A Strapi application",
@@ -11,22 +11,27 @@
   },
   "devDependencies": {},
   "dependencies": {
+    "knex": "0.21.18",
+    "nanoid": "^3.1.22",
+    "sqlite3": "5.0.0",
     "strapi": "3.5.4",
     "strapi-admin": "3.5.4",
-    "strapi-connector-mongoose": "3.5.4",
+    "strapi-connector-bookshelf": "3.5.4",
+    "strapi-connector-mongoose": "^3.5.4",
     "strapi-plugin-content-manager": "3.5.4",
     "strapi-plugin-content-type-builder": "3.5.4",
     "strapi-plugin-email": "3.5.4",
     "strapi-plugin-upload": "3.5.4",
     "strapi-plugin-users-permissions": "3.5.4",
+    "strapi-provider-email-nodemailer": "^3.5.4",
     "strapi-provider-upload-cloudinary": "^3.5.4",
     "strapi-utils": "3.5.4"
   },
   "author": {
-    "name": "A Strapi developer"
+    "name": "Touha Zohair"
   },
   "strapi": {
-    "uuid": "648b1a9a-0609-4d0f-a243-5d49515af1e9"
+    "uuid": "1ba389ba-2b8e-453b-88f8-e3d7bbdd5f55"
   },
   "engines": {
     "node": ">=10.16.0 <=14.x.x",
