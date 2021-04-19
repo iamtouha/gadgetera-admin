@@ -2,14 +2,21 @@
 
 const { sanitizeEntity } = require("strapi-utils");
 
-/**
- * Read the documentation (https://strapi.io/documentation/developer-docs/latest/development/backend-customization.html#core-controllers)
- * to customize this controller
- */
-
 const lowCostDeliveyAreas = ["Dhaka"];
 
 module.exports = {
+  async find(ctx) {
+    if (!ctx.state.user) {
+      return ctx.response.badRequest("Not Found");
+    }
+    const data = await strapi.services.order.find({
+      id: ctx.params.id,
+      user: ctx.state.user.id,
+    });
+    return data.map((order) =>
+      sanitizeEntity(order, { model: strapi.models.order })
+    );
+  },
   async create(ctx) {
     //   request validation
     if (ctx.is("multipart"))
