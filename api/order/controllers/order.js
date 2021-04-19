@@ -15,7 +15,15 @@ module.exports = {
     if (ctx.is("multipart"))
       return ctx.response.badRequest("Invalid Data Input");
     const order = ctx.request.body;
-    const { cart, payment, address, total, saveAddress } = order;
+    const {
+      cash_on_delivery,
+      delivery_charge,
+      cart,
+      payment,
+      address,
+      total,
+      saveAddress,
+    } = order;
 
     if (!cart || !cart.length)
       return ctx.response.badRequest("Invalid Data Input");
@@ -34,7 +42,7 @@ module.exports = {
       const user = ctx.state.user;
 
       if (lowCostDeliveyAreas.includes(order.address.district)) {
-        charge = 60;
+        charge = 70;
       }
 
       //   calculate cart total
@@ -44,7 +52,7 @@ module.exports = {
         }
         return acc;
       }, []);
-      console.log(ids);
+
       const products = await strapi.query("product").find({ id_in: ids });
       const newCart = [];
       cart.forEach((cartItem) => {
@@ -85,29 +93,32 @@ module.exports = {
         }
       }
 
-      // registers a transaction
-      const trx_payload = {
-        method,
-        transaction_id,
-        account_no,
-        amount: total,
-        user: user ? user.id : null,
-      };
-      const trx = await strapi.services.transaction.create(trx_payload);
-
       //   registers order
       const orderObj = {
-        payment: trx.id,
+        cash_on_delivery,
         coupon: couponId,
         cart: newCart,
         shipping_address: address,
-        user: user ? user.id : null,
         status: "pending",
         total: cartTotal + charge - discount,
         cart_total: cartTotal,
         delivery_charge: charge,
       };
-      const resp = await strapi.services.order.create(orderObj);
+      if (user) orderObj.user = user.id;
+      const orderResp = await strapi.services.order.create(orderObj);
+
+      // registers a transaction
+      const trx_payload = {
+        order: orderResp.id,
+        method,
+        transaction_id,
+        account_no,
+        amount: cash_on_delivery ? delivery_charge : total,
+        user: user ? user.id : null,
+      };
+      if (user) trx_payload.user = user.id;
+
+      const trx = await strapi.services.transaction.create(trx_payload);
 
       if (saveAddress && user) {
         const addressData = await strapi.services.address.findOne({
@@ -119,11 +130,27 @@ module.exports = {
           await strapi.services.address.update({ id: addressData.id }, address);
         }
       }
+      if (address.email) {
+        await strapi.plugins["email"].services.email.send({
+          to: address.email,
+          from: "sales@gadgeterabd.com",
+          subject: "Your order details",
+          text: `
+            Hi ${address.receiver},
+            Thank you for choosing us.\n\n
+            Here is your order details:\n
+            Order id: #${orderResp.order_id}\n
+            receiver phone number: ${address.phone}\n
+            address: ${address.street_address}, ${address.sub_district}, ${address.district}
+          `,
+        });
+      }
 
-      return sanitizeEntity(resp, {
+      return sanitizeEntity(orderResp, {
         model: strapi.models.order,
       });
     } catch (error) {
+      console.log(error.message);
       if (error.message.includes("Duplicate entry")) {
         return ctx.response.notAcceptable("Transaction already exists");
       }

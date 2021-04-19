@@ -56,14 +56,18 @@
       "type": "string",
       "unique": true
     },
-    "payment": {
-      "model": "transaction",
-      "via": "order"
+    "payments": {
+      "via": "order",
+      "collection": "transaction"
     },
     "cart_total": {
       "type": "decimal",
       "required": false,
       "min": 0
+    },
+    "cash_on_delivery": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

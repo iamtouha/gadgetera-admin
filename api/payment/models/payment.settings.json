@@ -1,0 +1,20 @@
+{
+  "kind": "singleType",
+  "collectionName": "payments",
+  "info": {
+    "name": "payment",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "accounts": {
+      "type": "component",
+      "repeatable": true,
+      "component": "order.payment"
+    }
+  }
+}

@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "addresses",
   "info": {
-    "name": "address"
+    "name": "address",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -27,10 +28,13 @@
       "type": "text"
     },
     "user": {
+      "private": true,
       "plugin": "users-permissions",
       "model": "user",
-      "via": "address",
-      "private": true
+      "via": "address"
+    },
+    "email": {
+      "type": "email"
     }
   }
 }

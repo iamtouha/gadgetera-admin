@@ -30,13 +30,10 @@
       "enum": [
         "bkash",
         "nagad",
-        "rocket"
+        "rocket",
+        "cash"
       ],
       "required": true
-    },
-    "order": {
-      "via": "payment",
-      "model": "order"
     },
     "verified": {
       "type": "boolean",
@@ -45,6 +42,10 @@
     "user": {
       "plugin": "users-permissions",
       "model": "user"
+    },
+    "order": {
+      "model": "order",
+      "via": "payments"
     }
   }
 }
