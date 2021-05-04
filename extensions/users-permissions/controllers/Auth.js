@@ -544,7 +544,6 @@ module.exports = {
         user: sanitizedUser,
       });
     } catch (err) {
-      console.log("lll");
       const adminError = _.includes(err.message, "username")
         ? {
             id: "Auth.form.error.username.taken",
