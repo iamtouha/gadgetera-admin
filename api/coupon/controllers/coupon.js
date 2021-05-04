@@ -9,29 +9,28 @@ module.exports = {
   async findOne(ctx) {
     try {
       const code = ctx.params.id;
-      const minOrder = ctx.query.order;
-      if (!code || !minOrder) {
+      const orderAmount = parseFloat(ctx.query.order);
+      if (!code || !orderAmount) {
         return ctx.response.badRequest("Insufficient information");
       }
-      const [coupon] = await strapi
-        .query("coupon")
-        .find({ code: code.toUpperCase() });
+
+      const coupon = await strapi.services.coupon.findOne({
+        code: code.toUpperCase(),
+        expire_date_gte: new Date().toISOString().substring(0, 10),
+      });
+
       if (!coupon) {
-        return ctx.response.notFound("Invalid Coupon");
+        return ctx.response.notFound("Invalid coupon");
       }
-      if (coupon.minimum_order > parseFloat(minOrder)) {
+      if (coupon.applied >= coupon.limit) {
+        return ctx.response.notFound("Maximum limit reached");
+      }
+      if (coupon.minimum_order > orderAmount) {
         return ctx.response.notAcceptable(
-          "Minimum order requiremient not fulfilled"
+          "Minimum order requirement not fulfilled."
         );
       }
-      const time = new Date(coupon.expire_date).getTime();
-      const currentTime = new Date().getTime();
-      if (time < currentTime) {
-        return ctx.response.notAcceptable("Coupon Expired");
-      }
-      if (time < currentTime) {
-        return ctx.response.notAcceptable("Coupon Expired");
-      }
+
       return sanitizeEntity(coupon, {
         model: strapi.models.coupon,
       });

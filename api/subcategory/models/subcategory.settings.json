@@ -1,9 +1,8 @@
 {
   "kind": "collectionType",
-  "collectionName": "categories",
+  "collectionName": "subcategories",
   "info": {
-    "name": "category",
-    "description": ""
+    "name": "subcategory"
   },
   "options": {
     "increments": true,
@@ -12,13 +11,18 @@
   },
   "attributes": {
     "name": {
-      "type": "string",
-      "required": true,
-      "unique": true
+      "type": "string"
     },
     "key": {
       "type": "uid",
       "targetField": "name"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "watch",
+        "headphone"
+      ]
     }
   }
 }

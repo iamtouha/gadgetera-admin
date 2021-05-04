@@ -15,12 +15,6 @@
       "plugin": "users-permissions",
       "model": "user"
     },
-    "shipping_address": {
-      "type": "component",
-      "repeatable": false,
-      "component": "order.address",
-      "required": false
-    },
     "cart": {
       "type": "component",
       "repeatable": true,
@@ -42,11 +36,6 @@
       "required": true,
       "default": "pending"
     },
-    "delivery_charge": {
-      "type": "decimal",
-      "min": 0,
-      "required": false
-    },
     "total": {
       "type": "decimal",
       "min": 0,
@@ -56,18 +45,30 @@
       "type": "string",
       "unique": true
     },
-    "payments": {
-      "via": "order",
-      "collection": "transaction"
-    },
-    "cart_total": {
-      "type": "decimal",
-      "required": false,
-      "min": 0
-    },
     "cash_on_delivery": {
       "type": "boolean",
       "default": false
+    },
+    "address": {
+      "type": "text",
+      "unique": false,
+      "required": true
+    },
+    "payment_method": {
+      "type": "enumeration",
+      "enum": [
+        "cash",
+        "bkash",
+        "rocket",
+        "nagad"
+      ],
+      "required": true,
+      "default": "cash"
+    },
+    "trx_id": {
+      "type": "string",
+      "unique": true,
+      "required": true
     }
   }
 }

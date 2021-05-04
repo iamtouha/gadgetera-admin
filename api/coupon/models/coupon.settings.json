@@ -30,6 +30,19 @@
       "type": "decimal",
       "min": 0,
       "default": 0
+    },
+    "limit": {
+      "type": "integer",
+      "min": 0,
+      "private": true,
+      "required": false,
+      "default": 1
+    },
+    "applied": {
+      "type": "integer",
+      "private": true,
+      "default": 0,
+      "min": 0
     }
   }
 }

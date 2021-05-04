@@ -16,10 +16,6 @@
       "min": 1,
       "max": 50
     },
-    "variant": {
-      "type": "string",
-      "required": true
-    },
     "subtotal": {
       "type": "decimal",
       "min": 0.1
