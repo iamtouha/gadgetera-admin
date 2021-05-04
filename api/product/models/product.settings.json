@@ -21,7 +21,7 @@
       "type": "richtext",
       "required": true
     },
-    "SKU": {
+    "sku": {
       "type": "string",
       "private": false,
       "required": true,
@@ -58,6 +58,9 @@
       "default": 0,
       "max": 1,
       "min": 0
+    },
+    "subcategory": {
+      "model": "subcategory"
     }
   }
 }
