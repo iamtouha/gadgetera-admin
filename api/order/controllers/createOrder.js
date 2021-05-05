@@ -70,9 +70,10 @@ module.exports = {
         cash_on_delivery: cash_on_delivery ? true : false,
         coupon: appliedCoupon ? appliedCoupon.id : null,
         cart: newCart,
-        address: `${address.receiver},\n${address.phone},\n${address.email},\n${address.street_address}, ${address.sub_district}, ${address.district}`,
+        address,
         status: "pending",
-        total: cartTotal + charge - appliedCoupon ? appliedCoupon.discount : 0,
+        total:
+          cartTotal + charge - (appliedCoupon ? appliedCoupon.discount : 0),
         trx_id,
         payment_method,
       };

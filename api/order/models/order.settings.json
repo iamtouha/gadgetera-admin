@@ -49,11 +49,6 @@
       "type": "boolean",
       "default": false
     },
-    "address": {
-      "type": "text",
-      "unique": false,
-      "required": true
-    },
     "payment_method": {
       "type": "enumeration",
       "enum": [
@@ -68,6 +63,10 @@
     "trx_id": {
       "type": "string",
       "unique": true,
+      "required": true
+    },
+    "address": {
+      "type": "json",
       "required": true
     }
   }

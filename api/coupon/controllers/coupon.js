@@ -9,11 +9,6 @@ module.exports = {
   async findOne(ctx) {
     try {
       const code = ctx.params.id;
-      const orderAmount = parseFloat(ctx.query.order);
-      if (!code || !orderAmount) {
-        return ctx.response.badRequest("Insufficient information");
-      }
-
       const coupon = await strapi.services.coupon.findOne({
         code: code.toUpperCase(),
         expire_date_gte: new Date().toISOString().substring(0, 10),
@@ -22,18 +17,12 @@ module.exports = {
       if (!coupon) {
         return ctx.response.notFound("Invalid coupon");
       }
-      if (coupon.applied >= coupon.limit) {
-        return ctx.response.notFound("Maximum limit reached");
+      if (coupon.applied < coupon.limit) {
+        return sanitizeEntity(coupon, {
+          model: strapi.models.coupon,
+        });
       }
-      if (coupon.minimum_order > orderAmount) {
-        return ctx.response.notAcceptable(
-          "Minimum order requirement not fulfilled."
-        );
-      }
-
-      return sanitizeEntity(coupon, {
-        model: strapi.models.coupon,
-      });
+      return ctx.response.notFound("Maximum limit reached");
     } catch (error) {
       console.error(error.message);
       return ctx.response.badImplementation("Internal error");

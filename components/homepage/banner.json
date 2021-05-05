@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_homepage_banners",
+  "info": {
+    "name": "banner",
+    "icon": "film"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "subtitle": {
+      "type": "text"
+    },
+    "hero_button": {
+      "type": "string"
+    },
+    "href": {
+      "type": "string"
+    },
+    "content": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    }
+  }
+}

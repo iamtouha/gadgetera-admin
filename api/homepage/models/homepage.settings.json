@@ -2,7 +2,8 @@
   "kind": "singleType",
   "collectionName": "homepages",
   "info": {
-    "name": "homepage"
+    "name": "homepage",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -10,19 +11,10 @@
     "draftAndPublish": false
   },
   "attributes": {
-    "promotional_content": {
-      "collection": "file",
-      "via": "related",
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos"
-      ],
-      "plugin": "upload",
-      "required": false
-    },
-    "featured_products": {
-      "collection": "product"
+    "banners": {
+      "type": "component",
+      "repeatable": true,
+      "component": "homepage.banner"
     }
   }
 }

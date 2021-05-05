@@ -19,8 +19,18 @@
       "targetField": "name"
     },
     "category": {
-      "model": "category",
-      "via": "subcategories"
+      "via": "subcategories",
+      "model": "category"
+    },
+    "photo": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
     }
   }
 }
