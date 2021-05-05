@@ -68,6 +68,10 @@
     "address": {
       "type": "json",
       "required": true
+    },
+    "shipping_charge": {
+      "type": "decimal",
+      "min": 0
     }
   }
 }

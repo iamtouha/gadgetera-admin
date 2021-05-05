@@ -11,7 +11,7 @@
       "model": "product"
     },
     "quantity": {
-      "type": "decimal",
+      "type": "integer",
       "required": true,
       "min": 1,
       "max": 50

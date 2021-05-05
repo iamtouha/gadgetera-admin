@@ -1,0 +1,31 @@
+{
+  "kind": "singleType",
+  "collectionName": "payments",
+  "info": {
+    "name": "payment",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "options": {
+      "type": "component",
+      "repeatable": true,
+      "component": "payments.option"
+    },
+    "shipping_charge": {
+      "type": "decimal",
+      "min": 0
+    },
+    "domestic_shipping_charge": {
+      "type": "decimal",
+      "min": 0
+    },
+    "domestic_districts": {
+      "type": "text"
+    }
+  }
+}

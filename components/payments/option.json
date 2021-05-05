@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_payments_options",
+  "info": {
+    "name": "option",
+    "icon": "cash-register",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "account": {
+      "type": "string",
+      "required": true
+    },
+    "note": {
+      "type": "text"
+    }
+  }
+}
