@@ -27,7 +27,12 @@
         "images"
       ],
       "plugin": "upload",
-      "required": true
+      "required": true,
+      "pluginOptions": {}
+    },
+    "description": {
+      "type": "text",
+      "maxLength": 200
     }
   }
 }

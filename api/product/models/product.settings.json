@@ -35,7 +35,8 @@
         "images"
       ],
       "plugin": "upload",
-      "required": true
+      "required": true,
+      "pluginOptions": {}
     },
     "slug": {
       "type": "uid",
@@ -60,7 +61,8 @@
       "min": 0
     },
     "subcategory": {
-      "model": "subcategory"
+      "model": "subcategory",
+      "via": "products"
     }
   }
 }

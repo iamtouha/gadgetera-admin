@@ -22,15 +22,21 @@
       "via": "subcategories",
       "model": "category"
     },
-    "photo": {
+    "cover": {
       "model": "file",
       "via": "related",
-      "allowedTypes": [
-        "images"
-      ],
+      "allowedTypes": ["images"],
       "plugin": "upload",
-      "required": false,
+      "required": true,
       "pluginOptions": {}
+    },
+    "description": {
+      "type": "text",
+      "maxLength": 200
+    },
+    "products": {
+      "via": "subcategory",
+      "collection": "product"
     }
   }
 }

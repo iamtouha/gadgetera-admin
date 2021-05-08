@@ -23,15 +23,18 @@
       "via": "category",
       "collection": "subcategory"
     },
-    "photo": {
+    "cover": {
       "model": "file",
       "via": "related",
-      "allowedTypes": [
-        "images"
-      ],
+      "allowedTypes": ["images"],
       "plugin": "upload",
-      "required": false,
+      "required": true,
       "pluginOptions": {}
+    },
+    "description": {
+      "type": "text",
+      "required": true,
+      "maxLength": 200
     }
   }
 }
