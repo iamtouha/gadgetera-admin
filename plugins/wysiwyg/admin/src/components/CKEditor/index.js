@@ -14,25 +14,41 @@ const Wrapper = styled.div`
 `;
 
 const configuration = {
-  toolbar: [
-    "heading",
-    "|",
-    "bold",
-    "italic",
-    "link",
-    "bulletedList",
-    "numberedList",
-    "|",
-    "indent",
-    "outdent",
-    "alignment",
-    "|",
-    "blockQuote",
-    "insertTable",
-    "mediaEmbed",
-    "undo",
-    "redo",
-  ],
+  toolbar: {
+    items: [
+      "heading",
+      "|",
+      "bold",
+      "italic",
+      "blockQuote",
+      "|",
+      "bulletedList",
+      "numberedList",
+      "|",
+      "outdent",
+      "indent",
+      "alignment",
+      "|",
+      "link",
+      "insertTable",
+      "mediaEmbed",
+      "|",
+      "undo",
+      "redo",
+    ],
+  },
+  language: "en",
+  image: {
+    toolbar: ["imageTextAlternative", "imageStyle:full", "imageStyle:side"],
+  },
+  table: {
+    contentToolbar: [
+      "tableColumn",
+      "tableRow",
+      "mergeTableCells",
+      "tableProperties",
+    ],
+  },
 };
 
 const Editor = ({ onChange, name, value }) => {
