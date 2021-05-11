@@ -1,29 +1,29 @@
 "use strict";
 
 const { sanitizeEntity } = require("strapi-utils");
+const { customAlphabet } = require("nanoid/async");
+const nanoid = customAlphabet("1234567890asdfghjklqwertyuiopzxcvbnm", 10);
 
 module.exports = {
   async create(ctx) {
     const order = ctx.request.body;
     const { cash_on_delivery, trx_id, payment_method, cart, address } = order;
 
-    if (!cart || !cart.length)
-      return ctx.response.badRequest("Invalid Data Input");
-    if (!payment_method || !trx_id)
-      return ctx.response.badRequest("Invalid Payment Info");
-    if (!address || !address.phone || !address.district)
-      return ctx.response.badRequest("Invalid Address");
-
     try {
+      const [valid, errMessage] = validateData(order);
+      if (!valid) {
+        return ctx.response.badRequest(errMessage);
+      }
+
       const user = ctx.state.user;
 
       const arr = cart.map((item) => item.product);
       const ids = Array.from(new Set(arr));
 
-      const promise1 = strapi.services.product.find({ id_in: ids });
-      const promise2 = strapi.services.payment.find();
-
-      const [products, payInfo] = await Promise.all([promise1, promise2]);
+      const [products, payInfo] = await Promise.all([
+        strapi.services.product.find({ id_in: ids }),
+        strapi.services.payment.find(),
+      ]);
 
       if (!products.length) {
         return ctx.response.badRequest("Invalid Data Input");
@@ -34,18 +34,26 @@ module.exports = {
       const [cartTotal, newCart] = calculateCart(products, cart);
 
       // check coupon validity and apply
-      let appliedCoupon;
-      if (order.coupon) {
-        const coupon = await validateCoupon(order.coupon, cartTotal);
-        if (!coupon) {
-          return ctx.response.notAcceptable("Coupon is not acceptable!");
-        }
-        appliedCoupon = coupon;
+      const appliedCoupon = await validateCoupon(order.coupon, cartTotal);
+      if (appliedCoupon === "invalid") {
+        return ctx.response.notAcceptable("Invalid coupon");
       }
 
       // delivery charge calculation
       const shipping_charge = calcShipping(address, payInfo);
 
+      const hasPaid = trx_id && payment_method;
+      const [paymentValitdity, errorInfo] = checkPaymentValitdity(
+        address,
+        payInfo,
+        hasPaid,
+        cash_on_delivery
+      );
+      if (!paymentValitdity) {
+        return ctx.response.notAcceptable(errorInfo);
+      }
+
+      const randomTrx = await nanoid();
       //   registers order
       const orderObj = {
         user: user ? user.id : null,
@@ -55,8 +63,8 @@ module.exports = {
         status: "pending",
         shipping_charge,
         total: cartTotal + shipping_charge,
-        trx_id,
-        payment_method,
+        trx_id: trx_id || "Empty-" + randomTrx,
+        payment_method: payment_method ? payment_method : "unavailable",
       };
       if (appliedCoupon) {
         orderObj.coupon = appliedCoupon.id;
@@ -65,21 +73,12 @@ module.exports = {
 
       const orderResp = await strapi.services.order.create(orderObj);
 
-      // save user address
-      const promise3 = updateUserAddress(address, user);
+      await Promise.all([
+        countAppliedCoupon(appliedCoupon),
+        updateUserAddress(address, user),
+        sendConfirmationMail(address, orderResp.order_id),
+      ]);
 
-      // send order details email
-      const promise4 = sendConfirmationMail(address, orderResp.order_id);
-
-      //update coupon applied count
-      let promise5;
-      if (appliedCoupon) {
-        promise5 = strapi.services.coupon.update(
-          { id: appliedCoupon.id },
-          { applied: appliedCoupon.applied + 1 }
-        );
-      }
-      await Promise.all([promise3, promise4, promise5]);
       return sanitizeEntity(orderResp, {
         model: strapi.models.order,
       });
@@ -117,17 +116,61 @@ module.exports = {
 
 // helper functions
 
+function validateData({ address, cart }) {
+  if (!cart || !cart.length) {
+    return [false, "Cart cannot be empty"];
+  }
+  if (!address) {
+    return [false, "Invalid address"];
+  }
+  const empty = Object.keys(address).filter((key) => !address[key]);
+  console.log(address);
+  if (empty.length >= 4) {
+    return [false, "Address Fields are empty."];
+  }
+  if (empty.length) {
+    return [
+      false,
+      empty.join(", ").split("_").join(" ") + " shouldn't be empty.",
+    ];
+  }
+  const emailRegex =
+    /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+  if (!emailRegex.test(address.email.toLowerCase())) {
+    return [false, "Invalid email"];
+  }
+  const phoneRegex = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/g;
+  if (!phoneRegex.test(address.phone)) {
+    return [false, "Invalid phone number"];
+  }
+  return [true];
+}
+function checkPaymentValitdity(address, payInfo, hasPaid, cash_on_delivery) {
+  if (!cash_on_delivery)
+    return [hasPaid, "provide payment method & Transaction id."];
+  const { domestic_districts } = payInfo;
+  const isDomestic = domestic_districts
+    .split(",")
+    .map((item) => item.toLowerCase().trim())
+    .find((item) => item === address.district.toLowerCase().trim());
+  return [
+    isDomestic || hasPaid,
+    "Shipping charge is required in advance for delivery outside Dhaka",
+  ];
+}
+
 async function validateCoupon(code, min) {
+  if (!code) return null;
   const coupon = await strapi.services.coupon.findOne({
     code,
     minimum_order_lte: min,
     expire_date_gte: new Date().toISOString().substring(0, 10),
   });
-  if (coupon && coupon.limit > coupon.applied) {
-    return coupon;
-  } else {
-    return null;
+  if (!coupon) return "invalid";
+  if (coupon.limit <= coupon.applied) {
+    return "invalid";
   }
+  return coupon;
 }
 
 function calculateCart(products, cart) {
@@ -150,11 +193,8 @@ function calculateCart(products, cart) {
 }
 
 function calcShipping(address, payment) {
-  const {
-    shipping_charge,
-    domestic_districts,
-    domestic_shipping_charge,
-  } = payment;
+  const { shipping_charge, domestic_districts, domestic_shipping_charge } =
+    payment;
 
   const isDomestic = domestic_districts
     .split(",")
@@ -164,6 +204,14 @@ function calcShipping(address, payment) {
   return isDomestic ? domestic_shipping_charge : shipping_charge;
 }
 
+async function countAppliedCoupon(coupon) {
+  if (!coupon) return;
+  await strapi.services.coupon.update(
+    { id: coupon.id },
+    { applied: coupon.applied + 1 }
+  );
+  return true;
+}
 async function sendConfirmationMail(address, orderId) {
   if (address.email && process.env.NODE_ENV === "production") {
     await strapi.plugins["email"].services.email.send({
@@ -171,13 +219,13 @@ async function sendConfirmationMail(address, orderId) {
       from: "sales@gadgeterabd.com",
       subject: "You placed an order",
       html: `
-         <p>Dear ${address.receiver},<br></p>
-         <p>Thank you for choosing us. Here is your order details:</p>
-         <p>Order id: #${orderId}</p>
-         <p>receiver phone number: ${address.phone}</p>
-         <p>address: ${address.street_address}, ${address.sub_district}, ${address.district}</p>
-         <p><br>Thanks</p>
-         <p>Gadget Era Team</p>
+        <p>Dear ${address.receiver},</p>
+        <p>Thank you for choosing us. Here is your order details:<br>
+        Order id: #${orderId}<br>
+        receiver phone number: ${address.phone}<br>
+        address: ${address.street_address}, ${address.sub_district}, ${address.district}<br>
+        <p>Thanks<br>
+        Gadget Era Team</p>
         `,
     });
   } else {

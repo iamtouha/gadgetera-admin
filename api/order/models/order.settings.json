@@ -55,15 +55,16 @@
         "cash",
         "bkash",
         "rocket",
-        "nagad"
+        "nagad",
+        "unavailable"
       ],
-      "required": true,
-      "default": "cash"
+      "required": false,
+      "default": "unavailable"
     },
     "trx_id": {
       "type": "string",
       "unique": true,
-      "required": true
+      "required": false
     },
     "address": {
       "type": "json",
