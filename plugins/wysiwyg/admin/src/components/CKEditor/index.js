@@ -15,36 +15,34 @@ const Wrapper = styled.div`
 
 const configuration = {
   toolbar: {
-    items: [
-      "heading",
-      "bold",
-      "italic",
-      "link",
-      "bulletedList",
-      "numberedList",
-      "|",
-      "outdent",
-      "indent",
-      "|",
-      "blockQuote",
-      "htmlEmbed",
-      "insertTable",
-      "mediaEmbed",
-      "undo",
-      "redo",
-    ],
+    items: ["heading", "|", "bold", "italic", "link", "|", "removeFormat"],
   },
   language: "en",
+  blockToolbar: [
+    "numberedList",
+    "bulletedList",
+    "|",
+    "indent",
+    "outdent",
+    "|",
+    "htmlEmbed",
+    "mediaEmbed",
+    "insertTable",
+    "|",
+    "undo",
+    "redo",
+  ],
   image: {
-    toolbar: [
-      "imageTextAlternative",
-      "imageStyle:full",
-      "imageStyle:side",
-      "linkImage",
-    ],
+    toolbar: ["imageTextAlternative", "imageStyle:full", "imageStyle:side"],
   },
   table: {
-    contentToolbar: ["tableColumn", "tableRow", "mergeTableCells"],
+    contentToolbar: [
+      "tableColumn",
+      "tableRow",
+      "mergeTableCells",
+      "tableCellProperties",
+      "tableProperties",
+    ],
   },
 };
 
