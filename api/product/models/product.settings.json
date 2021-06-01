@@ -19,7 +19,8 @@
     },
     "description": {
       "type": "richtext",
-      "required": true
+      "required": true,
+      "default": "Write product description here"
     },
     "sku": {
       "type": "string",
@@ -68,7 +69,8 @@
       "type": "text"
     },
     "model": {
-      "type": "string"
+      "type": "string",
+      "required": true
     }
   }
 }
