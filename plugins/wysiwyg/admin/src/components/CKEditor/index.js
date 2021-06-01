@@ -17,37 +17,34 @@ const configuration = {
   toolbar: {
     items: [
       "heading",
-      "|",
       "bold",
       "italic",
-      "blockQuote",
-      "|",
+      "link",
       "bulletedList",
       "numberedList",
       "|",
       "outdent",
       "indent",
-      "alignment",
       "|",
-      "link",
+      "blockQuote",
+      "htmlEmbed",
       "insertTable",
       "mediaEmbed",
-      "|",
       "undo",
       "redo",
     ],
   },
   language: "en",
   image: {
-    toolbar: ["imageTextAlternative", "imageStyle:full", "imageStyle:side"],
+    toolbar: [
+      "imageTextAlternative",
+      "imageStyle:full",
+      "imageStyle:side",
+      "linkImage",
+    ],
   },
   table: {
-    contentToolbar: [
-      "tableColumn",
-      "tableRow",
-      "mergeTableCells",
-      "tableProperties",
-    ],
+    contentToolbar: ["tableColumn", "tableRow", "mergeTableCells"],
   },
 };
 

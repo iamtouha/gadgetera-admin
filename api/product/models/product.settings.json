@@ -66,6 +66,9 @@
     },
     "overview": {
       "type": "text"
+    },
+    "model": {
+      "type": "string"
     }
   }
 }
