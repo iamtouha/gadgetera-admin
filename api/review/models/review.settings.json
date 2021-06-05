@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "reviews",
   "info": {
-    "name": "review"
+    "name": "review",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -20,10 +21,19 @@
       "type": "text"
     },
     "order": {
+      "private": true,
       "model": "order"
     },
     "product": {
       "model": "product"
+    },
+    "user_name": {
+      "type": "string"
+    },
+    "user": {
+      "private": true,
+      "plugin": "users-permissions",
+      "model": "user"
     }
   }
 }
