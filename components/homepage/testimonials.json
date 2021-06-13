@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_homepage_testimonials",
+  "info": {
+    "name": "testimonials",
+    "icon": "award"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "affiliation": {
+      "type": "string",
+      "required": true
+    },
+    "photo": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "message": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

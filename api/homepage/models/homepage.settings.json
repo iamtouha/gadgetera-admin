@@ -24,6 +24,14 @@
     },
     "new_arrivals": {
       "collection": "product"
+    },
+    "top_brands": {
+      "collection": "brand"
+    },
+    "testimonials": {
+      "type": "component",
+      "repeatable": true,
+      "component": "homepage.testimonials"
     }
   }
 }
