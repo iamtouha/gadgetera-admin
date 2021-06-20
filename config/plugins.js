@@ -1,11 +1,13 @@
 module.exports = ({ env }) => ({
   upload: {
-    breakpoints: {
-      small: 750,
-    },
-    provider: "cloudinary",
+    provider: "aws-s3",
     providerOptions: {
-      cloudinary_url: env("CLOUDINARY_URL"),
+      accessKeyId: env("AWS_ACCESS_ID"),
+      secretAccessKey: env("AWS_SECRET_KEY"),
+      region: env("AWS_REGION"),
+      params: {
+        Bucket: env("AWS_BUCKET"),
+      },
     },
   },
   email: {
