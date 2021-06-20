@@ -178,9 +178,7 @@ function calculateCart(products, cart) {
   const validCart = [];
   products.forEach((product) => {
     const cartItem = cart.find((item) => item.product === product.id);
-    const unitPrice = product.discount
-      ? product.price - product.discount * product.price
-      : product.price;
+    const unitPrice = product.sale_price || product.price;
     const item = {
       product: product.id,
       quantity: cartItem.quantity,

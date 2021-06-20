@@ -55,12 +55,6 @@
       "type": "boolean",
       "default": true
     },
-    "discount": {
-      "type": "decimal",
-      "default": 0,
-      "max": 1,
-      "min": 0
-    },
     "subcategory": {
       "model": "subcategory",
       "via": "products"
@@ -71,6 +65,11 @@
     "model": {
       "type": "string",
       "required": true
+    },
+    "sale_price": {
+      "type": "decimal",
+      "min": 0,
+      "default": 0
     }
   }
 }
