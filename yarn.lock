@@ -10634,7 +10634,7 @@ strapi-provider-email-sendmail@3.6.1:
     sendmail "^1.6.1"
     strapi-utils "3.6.1"
 
-strapi-provider-upload-aws-s3@^3.6.3:
+strapi-provider-upload-aws-s3@^3.6.1:
   version "3.6.3"
   resolved "https://registry.yarnpkg.com/strapi-provider-upload-aws-s3/-/strapi-provider-upload-aws-s3-3.6.3.tgz#a2efe8db861113b1ee8eeab9917824d96c2c7231"
   integrity sha512-w4iDRHOQ2wE/LN2CdO7cTFRBEKsIaHE2XG0hT8R2Ch/RX73Ksqhph32ttDFVGBCbG5ujhuV59M1Pcwmz36lL2Q==
