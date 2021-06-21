@@ -13,6 +13,7 @@
   "dependencies": {
     "@sentry/node": "^6.2.5",
     "knex": "0.21.18",
+    "lodash": "^4.17.21",
     "nanoid": "^3.1.22",
     "sqlite3": "5.0.0",
     "strapi": "3.6.1",

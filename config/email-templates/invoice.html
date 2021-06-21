@@ -1,0 +1,541 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gadget Era Invoice</title>
+  </head>
+  <body style="margin: 0; background-color: #cccccc">
+    <center
+      class="wrapper"
+      style="
+        width: 100%;
+        table-layout: fixed;
+        background-color: #cccccc;
+        padding-bottom: 30px;
+      "
+    >
+      <table
+        class="main"
+        width="100%"
+        style="
+          background: white;
+          margin: 0 auto;
+          width: 100%;
+          max-width: 600px;
+          border-spacing: 0;
+          font-family: sans-serif;
+          color: #171a1b;
+        "
+      >
+        <!-- TOP BORDER -->
+        <tr>
+          <td height="10" style="padding: 0; line-height: 1.2rem"></td>
+        </tr>
+        <!-- LOGO SECTION -->
+        <tr>
+          <td
+            style="
+              padding: 0;
+              line-height: 1.2rem;
+              padding: 14px 0 4px;
+              background: #171a1b;
+              color: white;
+            "
+          >
+            <table width="100%" style="border-spacing: 0">
+              <tr>
+                <td
+                  class="two-cols"
+                  style="
+                    padding: 0;
+                    line-height: 1.2rem;
+                    text-align: center;
+                    font-size: 0;
+                  "
+                >
+                  <table
+                    class="cols"
+                    style="
+                      border-spacing: 0;
+                      width: 100%;
+                      max-width: 300px;
+                      display: inline-table;
+                      vertical-align: top;
+                      font-size: 14px;
+                    "
+                  >
+                    <tr>
+                      <td
+                        class="text-center"
+                        style="
+                          padding: 0;
+                          line-height: 1.2rem;
+                          text-align: center !important;
+                        "
+                      >
+                        <a href="https://gadgeterabd.com"
+                          ><img
+                            width="180"
+                            src="https://gadget-era.s3.ap-southeast-1.amazonaws.com/logo.png"
+                            alt="Gadget Era"
+                            style="border: 0"
+                        /></a>
+                      </td>
+                    </tr>
+                  </table>
+                  <table
+                    class="cols"
+                    style="
+                      border-spacing: 0;
+                      width: 100%;
+                      max-width: 300px;
+                      display: inline-table;
+                      vertical-align: top;
+                      font-size: 14px;
+                    "
+                  >
+                    <tr>
+                      <td
+                        style="
+                          padding: 0;
+                          line-height: 1.2rem;
+                          font-size: medium;
+                        "
+                      >
+                        Order#<%- order_id %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td
+                        style="
+                          padding: 0;
+                          line-height: 1.2rem;
+                          padding-top: 5px;
+                        "
+                      >
+                        Date: <%- date %>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <!-- USER ADDRESS -->
+        <tr>
+          <td
+            class="ma pa"
+            style="
+              padding: 0;
+              line-height: 1.2rem;
+              margin-top: 15px;
+              margin-left: 15px;
+              margin-right: 15px;
+              margin-bottom: 15px;
+              padding: 15px;
+              padding-left: 15px;
+              padding-right: 15px;
+              padding-bottom: 15px;
+            "
+          >
+            <table
+              class="one-cols text-center"
+              style="
+                border-spacing: 0;
+                width: 100%;
+                max-width: 400px;
+                margin: 0 auto;
+                text-align: center !important;
+              "
+            >
+              <tr>
+                <td
+                  class="pa-sm"
+                  style="padding: 0; line-height: 1.2rem; padding: 5px"
+                >
+                  <img
+                    src="https://gadget-era.s3.ap-southeast-1.amazonaws.com/check-circle-outline-2.png"
+                    style="border: 0"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td
+                  style="
+                    padding: 0;
+                    line-height: 1.2rem;
+                    font-weight: bold;
+                    padding: 5px;
+                  "
+                >
+                  Thank you for placing your order with our store!
+                </td>
+              </tr>
+              <tr>
+                <td
+                  class="pa-sm"
+                  style="padding: 0; line-height: 1.2rem; padding: 5px"
+                >
+                  This email is to confirm your recent order.
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td
+            style="padding: 0; line-height: 1.2rem; border-top: 1px solid #ccc"
+          ></td>
+        </tr>
+        <tr>
+          <td
+            class="ma pa"
+            style="
+              padding: 0;
+              line-height: 1.2rem;
+              margin-top: 15px;
+              margin-left: 15px;
+              margin-right: 15px;
+              margin-bottom: 15px;
+              padding: 15px;
+              padding-left: 15px;
+              padding-right: 15px;
+              padding-bottom: 15px;
+            "
+          >
+            <table
+              class="one-cols text-center"
+              style="
+                border-spacing: 0;
+                width: 100%;
+                max-width: 400px;
+                margin: 0 auto;
+                text-align: center !important;
+              "
+            >
+              <tr>
+                <td
+                  style="
+                    padding: 0;
+                    line-height: 1.2rem;
+                    font-weight: bold;
+                    padding: 5px;
+                  "
+                >
+                  <%- receiver %>
+                </td>
+              </tr>
+              <tr>
+                <td
+                  class="pa-sm"
+                  style="padding: 0; line-height: 1.2rem; padding: 5px"
+                >
+                  <%- phone %>
+                </td>
+              </tr>
+              <tr>
+                <td
+                  class="pa-sm"
+                  style="padding: 0; line-height: 1.2rem; padding: 5px"
+                >
+                  <%- fullAddress %>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td
+            class="ma pa"
+            style="
+              padding: 0;
+              line-height: 1.2rem;
+              margin-top: 15px;
+              margin-left: 15px;
+              margin-right: 15px;
+              margin-bottom: 15px;
+              padding: 15px;
+              padding-left: 15px;
+              padding-right: 15px;
+              padding-bottom: 15px;
+            "
+          >
+            <table width="100%" style="border-spacing: 0">
+              <tr style="background-color: #171a1b; color: white">
+                <th
+                  class="pa text-left"
+                  style="
+                    padding: 15px;
+                    padding-left: 15px;
+                    padding-right: 15px;
+                    padding-bottom: 15px;
+                    text-align: left !important;
+                  "
+                >
+                  Product
+                </th>
+                <th
+                  class="pa text-right"
+                  style="
+                    padding: 15px;
+                    padding-left: 15px;
+                    padding-right: 15px;
+                    padding-bottom: 15px;
+                    text-align: right !important;
+                  "
+                >
+                  Price(BDT)
+                </th>
+              </tr>
+              <% _.forEach(cart, function(item){ %>
+              <tr>
+                <td
+                  class="pa text-left"
+                  style="
+                    padding: 0;
+                    line-height: 1.2rem;
+                    padding: 15px;
+                    padding-left: 15px;
+                    padding-right: 15px;
+                    padding-bottom: 15px;
+                    text-align: left !important;
+                  "
+                >
+                  <%-item['quantity']%> &times; <%-item['productName']%>
+                </td>
+                <td
+                  class="pa text-right"
+                  style="
+                    padding: 0;
+                    line-height: 1.2rem;
+                    padding: 15px;
+                    padding-left: 15px;
+                    padding-right: 15px;
+                    padding-bottom: 15px;
+                    text-align: right !important;
+                  "
+                >
+                  <%-item['subtotal']%>
+                </td>
+              </tr>
+              <% }); %>
+              <tr>
+                <td
+                  colspan="2"
+                  style="
+                    padding: 0;
+                    line-height: 1.2rem;
+                    border-top: 1px solid #ccc;
+                  "
+                ></td>
+              </tr>
+              <tr>
+                <td colspan="2" style="padding: 0; line-height: 1.2rem">
+                  <table
+                    style="
+                      border-spacing: 0;
+                      max-width: 250px;
+                      width: 100%;
+                      float: right;
+                    "
+                  >
+                    <tr>
+                      <td
+                        class="text-right pa-sm"
+                        style="
+                          line-height: 1.2rem;
+                          padding: 5px;
+                          text-align: right !important;
+                        "
+                      >
+                        Subtotal
+                      </td>
+                      <td
+                        class="text-right pa-sm pr"
+                        style="
+                          line-height: 1.2rem;
+                          padding: 5px;
+                          padding-right: 15px;
+                          text-align: right !important;
+                        "
+                      >
+                        <%- cartTotal %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td
+                        class="text-right pa-sm"
+                        style="
+                          line-height: 1.2rem;
+                          padding: 5px;
+                          text-align: right !important;
+                        "
+                      >
+                        Discount
+                      </td>
+                      <td
+                        class="text-right pa-sm pr"
+                        style="
+                          line-height: 1.2rem;
+                          padding: 5px;
+                          padding-right: 15px;
+                          text-align: right !important;
+                        "
+                      >
+                        <%- discount %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td
+                        class="text-right"
+                        style="
+                          padding: 5px;
+                          line-height: 1.2rem;
+                          text-align: right !important;
+                        "
+                      >
+                        Shipping
+                      </td>
+                      <td
+                        class="text-right pa-sm pr"
+                        style="
+                          line-height: 1.2rem;
+                          padding: 5px;
+                          padding-right: 15px;
+                          text-align: right !important;
+                        "
+                      >
+                        <%- shipping %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td
+                        colspan="2"
+                        style="line-height: 1.2rem; border-top: 1px solid #ccc"
+                      ></td>
+                    </tr>
+                    <tr>
+                      <th
+                        class="text-right pa-sm"
+                        style="padding: 5px; text-align: right !important"
+                      >
+                        Total
+                      </th>
+                      <th
+                        class="text-right pa-sm pr"
+                        style="
+                          padding: 5px;
+                          padding-right: 15px;
+                          text-align: right !important;
+                        "
+                      >
+                        <%- total %>
+                      </th>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td
+            class="pa ma"
+            style="
+              padding: 0;
+              line-height: 1.2rem;
+              margin-top: 15px;
+              margin-left: 15px;
+              margin-right: 15px;
+              margin-bottom: 15px;
+              padding: 15px;
+              padding-left: 15px;
+              padding-right: 15px;
+              padding-bottom: 15px;
+            "
+          >
+            <a
+              class="track-btn"
+              href="https://gadgeterabd.com/orders/<%- order_id %>"
+              style="
+                display: block;
+                text-decoration: none;
+                color: black;
+                max-width: 150px;
+                max-height: 50px;
+                margin: 5px auto;
+                padding: 12px;
+                text-align: center;
+                font-weight: bold;
+                text-transform: uppercase;
+                color: white;
+                background: #fe5f55;
+              "
+              >track order</a
+            >
+          </td>
+        </tr>
+        <tr>
+          <td
+            style="padding: 0; line-height: 1.2rem; border-top: 1px solid #ccc"
+          ></td>
+        </tr>
+        <tr>
+          <td
+            class="ma pa"
+            style="
+              padding: 0;
+              line-height: 1.2rem;
+              margin-top: 15px;
+              margin-left: 15px;
+              margin-right: 15px;
+              margin-bottom: 15px;
+              padding: 15px;
+              padding-left: 15px;
+              padding-right: 15px;
+              padding-bottom: 15px;
+            "
+          >
+            <table
+              class="one-cols text-center"
+              style="
+                border-spacing: 0;
+                width: 100%;
+                max-width: 400px;
+                margin: 0 auto;
+                text-align: center !important;
+              "
+            >
+              <tr>
+                <td
+                  class="pa-sm"
+                  style="padding: 0; line-height: 1.2rem; padding: 5px"
+                >
+                  call +880 1521-499258
+                </td>
+              </tr>
+              <tr>
+                <td
+                  class="pa"
+                  style="
+                    padding: 0;
+                    line-height: 1.2rem;
+                    padding: 15px;
+                    padding-left: 15px;
+                    padding-right: 15px;
+                    padding-bottom: 15px;
+                  "
+                >
+                  All rights reserved
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </center>
+  </body>
+</html>

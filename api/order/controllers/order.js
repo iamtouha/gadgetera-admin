@@ -76,7 +76,6 @@ module.exports = {
       await Promise.all([
         countAppliedCoupon(appliedCoupon),
         updateUserAddress(address, user),
-        sendConfirmationMail(address, orderResp.order_id),
       ]);
 
       return sanitizeEntity(orderResp, {
@@ -210,26 +209,7 @@ async function countAppliedCoupon(coupon) {
   );
   return true;
 }
-async function sendConfirmationMail(address, orderId) {
-  if (address.email && process.env.NODE_ENV === "production") {
-    await strapi.plugins["email"].services.email.send({
-      to: address.email,
-      from: "sales@gadgeterabd.com",
-      subject: "You placed an order",
-      html: `
-        <p>Dear ${address.receiver},</p>
-        <p>Thank you for choosing us. Here is your order details:<br>
-        Order id: #${orderId}<br>
-        receiver phone number: ${address.phone}<br>
-        address: ${address.street_address}, ${address.sub_district}, ${address.district}<br>
-        <p>Thanks<br>
-        Gadget Era Team</p>
-        `,
-    });
-  } else {
-    return null;
-  }
-}
+
 async function updateUserAddress(address, user) {
   if (!user) return;
   if (user.address) {
