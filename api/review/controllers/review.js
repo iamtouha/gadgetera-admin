@@ -58,6 +58,9 @@ module.exports = {
   },
 };
 function permittedUser(reqUser, orderUser) {
+  if (!(reqUser && orderUser)) {
+    return true;
+  }
   const reqUserId = reqUser && reqUser.id;
   const orderUserId = orderUser && orderUser.id;
   return (!orderUser && reqUser) || reqUserId === orderUserId;
