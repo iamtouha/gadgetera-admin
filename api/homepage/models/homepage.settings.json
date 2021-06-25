@@ -22,9 +22,6 @@
     "best_deals": {
       "collection": "product"
     },
-    "new_arrivals": {
-      "collection": "product"
-    },
     "top_brands": {
       "collection": "brand"
     },
@@ -32,6 +29,9 @@
       "type": "component",
       "repeatable": true,
       "component": "homepage.testimonials"
+    },
+    "subcategories": {
+      "collection": "subcategory"
     }
   }
 }
