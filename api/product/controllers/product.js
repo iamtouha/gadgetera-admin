@@ -1,4 +1,5 @@
 "use strict";
+const stringify = require("csv-stringify/lib/sync");
 
 /**
  * Read the documentation (https://strapi.io/documentation/developer-docs/latest/development/backend-customization.html#core-controllers)
@@ -21,9 +22,9 @@ const taxonomy = {
 };
 
 module.exports = {
-  async catalogue() {
-    const products = await strapi.services.product.find();
-    return products.map((product) => {
+  async catalogue(ctx) {
+    const response = await strapi.services.product.find();
+    const products = response.map((product) => {
       const obj = {
         id: product.id,
         title: product.name,
@@ -39,11 +40,37 @@ module.exports = {
         google_product_category:
           taxonomy[product.subcategory.key] || "Electronics",
       };
-      console.log(product.subcategory.key);
       if (product.sale_price) {
         obj["sale_price"] = product.sale_price + " BDT";
       }
       return obj;
     });
+    const fields = [
+      "id",
+      "title",
+      "description",
+      "availability",
+      "condition",
+      "price",
+      "sale_price",
+      "link",
+      "image_link",
+      "brand",
+      "item_group_id",
+      "age_group",
+      "google_product_category",
+    ];
+    const list = products.map((product) => fields.map((key) => product[key]));
+    console.log(list);
+    const catalogue = [fields, ...list];
+
+    const csvContent = stringify(catalogue);
+
+    ctx.set("Content-type", "text/csv");
+    ctx.set(
+      "Content-Disposition",
+      `inline; filename="${new Date().toJSON()}.csv"`
+    );
+    ctx.response.send(csvContent);
   },
 };
