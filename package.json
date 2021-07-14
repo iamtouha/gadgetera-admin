@@ -9,17 +9,18 @@
     "build": "cd ./plugins/wysiwyg && yarn install && cd ../../ && strapi build",
     "strapi": "strapi"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "sqlite3": "5.0.0",
+    "knex": "0.21.18",
+    "strapi-connector-bookshelf": "3.6.1"
+  },
   "dependencies": {
     "@sentry/node": "^6.2.5",
     "csv-stringify": "^5.6.2",
-    "knex": "0.21.18",
     "lodash": "^4.17.21",
     "nanoid": "^3.1.22",
-    "sqlite3": "5.0.0",
     "strapi": "3.6.1",
     "strapi-admin": "3.6.1",
-    "strapi-connector-bookshelf": "3.6.1",
     "strapi-connector-mongoose": "^3.6.1",
     "strapi-plugin-content-manager": "3.6.1",
     "strapi-plugin-content-type-builder": "3.6.1",

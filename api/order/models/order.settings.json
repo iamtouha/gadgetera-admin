@@ -73,6 +73,9 @@
     "shipping_charge": {
       "type": "decimal",
       "min": 0
+    },
+    "note": {
+      "type": "text"
     }
   }
 }

@@ -30,7 +30,7 @@ module.exports = {
         acc += cur.subtotal;
         return acc;
       }, 0);
-      const date = new Date(createdAt).toLocaleDateString();
+      const date = new Date(createdAt || created_at).toLocaleDateString();
 
       const { receiver, street_address, district, sub_district, phone, email } =
         address;
@@ -54,7 +54,6 @@ module.exports = {
           shipping: total - cartTotal + discount,
         }
       );
-      console.log(emailTemplate);
     },
   },
 };

@@ -7,8 +7,10 @@ const nanoid = customAlphabet("1234567890asdfghjklqwertyuiopzxcvbnm", 10);
 module.exports = {
   async create(ctx) {
     const order = ctx.request.body;
-    const { cash_on_delivery, trx_id, payment_method, cart, address } = order;
+    const { cash_on_delivery, trx_id, payment_method, cart, address, note } =
+      order;
 
+    const transaction_id = trx_id ? trx_id.trim() : null;
     try {
       const [valid, errMessage] = validateData(order);
       if (!valid) {
@@ -42,15 +44,10 @@ module.exports = {
       // delivery charge calculation
       const shipping_charge = calcShipping(address, payInfo);
 
-      const hasPaid = trx_id && payment_method;
-      const [paymentValitdity, errorInfo] = checkPaymentValitdity(
-        address,
-        payInfo,
-        hasPaid,
-        cash_on_delivery
-      );
-      if (!paymentValitdity) {
-        return ctx.response.notAcceptable(errorInfo);
+      const hasPaid = transaction_id && payment_method;
+
+      if (!cash_on_delivery && !hasPaid) {
+        return ctx.response.notAcceptable("Payment is not valid");
       }
 
       const randomTrx = await nanoid();
@@ -65,6 +62,7 @@ module.exports = {
         total: cartTotal + shipping_charge,
         trx_id: trx_id || "Empty-" + randomTrx,
         payment_method: payment_method ? payment_method : "unavailable",
+        note,
       };
       if (appliedCoupon) {
         orderObj.coupon = appliedCoupon.id;
@@ -123,7 +121,6 @@ function validateData({ address, cart }) {
     return [false, "Invalid address"];
   }
   const empty = Object.keys(address).filter((key) => !address[key]);
-  console.log(address);
   if (empty.length >= 4) {
     return [false, "Address Fields are empty."];
   }
@@ -143,19 +140,6 @@ function validateData({ address, cart }) {
     return [false, "Invalid phone number"];
   }
   return [true];
-}
-function checkPaymentValitdity(address, payInfo, hasPaid, cash_on_delivery) {
-  if (!cash_on_delivery)
-    return [hasPaid, "provide payment method & Transaction id."];
-  const { domestic_districts } = payInfo;
-  const isDomestic = domestic_districts
-    .split(",")
-    .map((item) => item.toLowerCase().trim())
-    .find((item) => item === address.district.toLowerCase().trim());
-  return [
-    isDomestic || hasPaid,
-    "Shipping charge is required in advance for delivery outside Dhaka",
-  ];
 }
 
 async function validateCoupon(code, min) {
