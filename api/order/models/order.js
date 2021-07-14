@@ -12,7 +12,15 @@ module.exports = {
     async beforeCreate(order) {
       order.order_id = await nanoid();
     },
-    async afterCreate({ order_id, address, total, coupon, cart, createdAt }) {
+    async afterCreate({
+      order_id,
+      address,
+      total,
+      coupon,
+      cart,
+      createdAt,
+      created_at,
+    }) {
       const html = readFileSync("config/email-templates/invoice.html", {
         encoding: "utf-8",
       });
